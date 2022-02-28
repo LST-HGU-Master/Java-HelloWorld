@@ -1,14 +1,29 @@
-# Autograding Example: Java
-This example project is written in Java, and tested with Gradle/JUnit.
+# 練習課題
+Github Educationでの実行結果のチェック
 
-### The assignment
-The tests are currently failing because of an output mismatch. Fixing the `System.out.println` in the main method will make the tests green.
+### 課題の説明
+現在のプログラムは出力結果が期待される文字列に一致しないためテストにパスしない。
+そこで `System.out.println` で出力する文字列を修正し、テストがグリーンになることを確認せよ。
 
-### Setup command
-N/A
 
-### Run command
-`gradle test`
+- 修正前のプログラム（src/main/java/Hello.java）
+```
+public class Hello {
 
-### Notes
-- The JDK is installed on GitHub Actions machines, so you're also able to directly invoke `javac`, `java`, or any other CLI command included in the JDK. 
+	public static void main(final String[] args) {
+		System.out.println("Not the right string, tests will fail!");
+	}
+
+}
+```
+
+- 修正前の実行結果
+```
+Not the right string, tests will fail!
+```
+
+
+- 期待される実行結果
+```
+Hello world!
+```
