@@ -22,7 +22,7 @@ Not the right string, tests will fail!
 ```
 
 
-### 期待される実行結果
+### 期待される実行結果 (大文字・小文字・感嘆符に注意しましょう)
 ```
 Hello world!
 ```
