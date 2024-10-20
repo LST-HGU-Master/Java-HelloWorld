@@ -1,0 +1,37 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
+    - name: check 1-0
+      id: check-1-0
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: check 1-0
+        setup-command: ''
+        command: gradle test --tests "HelloTest.testHelloWorld"
+        timeout: 10
+        max-score: 0
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        CHECK-1-0_RESULTS: "${{steps.check-1-0.outputs.result}}"
+      with:
+        runners: check-1-0
